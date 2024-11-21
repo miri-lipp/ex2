@@ -9,7 +9,7 @@ Assignment: ex2
 int main() {
 	int key;
 	char eye, nose, mouth;
-	int size, balance;
+	int size, balance, generous;
 	printf("Choose an option: \n"
 		"        1. Happy Face\n"
 		"        2. Balanced Number\n"
@@ -52,10 +52,47 @@ int main() {
 				printf("Only positive number is allowed, please try again:\n");
 				scanf("%i", &balance);
 			}
-
+			int module = 10, sum1 = 0, sum2 = 0, j = 0;
+			int reserve = balance;
+			while (reserve != 0) {
+				reserve /= 10;
+				j++;
+			}
+			int k = j;
+			k = k/2;
+			while ( k != 0) {
+				sum1 += balance % module;
+				balance /= 10;
+				k--;
+			}
+			j = j/2;
+			while (j != 0) {
+				sum2 += balance % module;
+				balance /= 10;
+				j--;
+			}
+			if (sum1 == sum2)
+				printf("This number is balanced and brings harmony!\n");
+			else
+				printf("This number isn't balanced and destroys harmony.\n");
 			break;
 		case 3:
-			printf("Generous Number\n");
+			printf("Enter a number:\n");
+			scanf("%i", &generous);
+			while(generous <= 0) {
+				printf("Only positive number is allowed, please try again:\n");
+				scanf("%i", &generous);
+			}
+			int sum3 = 0, n = 2;
+			while (n != generous) {
+				if (generous % n == 0)
+					sum3 += n;
+				n++;
+			}
+			if (sum3 > generous)
+				printf("This number is generous!\n");
+			else
+				printf("This number does not share.\n");
 			 break;
 		case 4:
 			printf("Circle Of Joy\n");
