@@ -9,7 +9,7 @@ Assignment: ex2
 int main() {
 	int key;
 	char eye, nose, mouth;
-	int size, balance, generous;
+	int size, balance, generous, circle;
 	printf("Choose an option: \n"
 		"        1. Happy Face\n"
 		"        2. Balanced Number\n"
@@ -95,7 +95,37 @@ int main() {
 				printf("This number does not share.\n");
 			 break;
 		case 4:
-			printf("Circle Of Joy\n");
+			printf("Enter a number:\n");
+			scanf("%i", &circle);
+			while(circle <= 0) {
+				printf("Only positive number is allowed, please try again:\n");
+				scanf("%i", &circle);
+			}
+			int circle2 = 0, m = 2;
+			while (circle % m != 0 && circle != m) {
+				if (circle % m == 0) {
+					break;
+				}
+				m++;
+			}
+			while (circle != 0) {
+				circle2 += circle % 10;
+				if (circle / 10 == 0)
+					break;
+				circle /= 10;
+				circle2 *= 10;
+			}
+			int m2 = 2;
+			while (circle2 % m2 != 0 && circle2 != m2) {
+				if (circle2 % m2 == 0) {
+					break;
+				}
+				m2++;
+			}
+			if (circle2 == m2 && circle == m)
+				printf("This number completes the circle of joy!\n");
+			else
+				printf("The circle remains incomplete.\n");
 			break;
 		case 5:
 			printf("Happy Numbers\n");
