@@ -9,7 +9,7 @@ Assignment: ex2
 int main() {
 	int key;
 	char eye, nose, mouth;
-	int size, balance, generous, circle, happy;
+	int size, balance, generous, circle, happy, smile, cheer;
 	printf("Choose an option: \n"
 		"        1. Happy Face\n"
 		"        2. Balanced Number\n"
@@ -137,40 +137,32 @@ int main() {
 		case 5:
 			printf("Enter a number:\n");
 			scanf("%i", &happy);
-			int total = 0, buffer2 = happy, num = 1;
+			int total, num = 2, buffer2;
 			while(happy <= 0) {
 				printf("Only positive number is allowed, please try again:\n");
 				scanf("%i", &happy);
 			}
 			printf("Between 1 and %d only these numbers bring happiness: ", happy);
-			do {
-				buffer2 = num;
-				while (buffer2 != 1 || total != 1) {
-					while (buffer2 != 0) {
+			for (int i = 1; i <= happy; i++) {
+				num = i;
+				int cycle = 0;
+				while (num != 1 && cycle < 200) {
+					total = 0;
+					buffer2 = num;
+					while (buffer2 > 0) {
 						total += (buffer2 % 10) * (buffer2 % 10);
 						buffer2 /= 10;
-						if (buffer2 == num)
-							break;
 					}
-					if (total != 1) {
-						buffer2 = 0;
-						while (total != 0) {
-							buffer2 += (total % 10) * (total % 10);
-							total /= 10;
-							if (total == num)
-								break;
-						}
-					}
-					else {
-						printf("%d ", num);
-						break;
-					}
+					num = total;
+					cycle++;
 				}
-				num++;
-			} while (num != happy);
+				if (num == 1)
+					printf("%d ",i);
+			}
 			break;
 		case 6:
-			printf("Festival Of Laughter\n");
+			printf("\nEnter a smile and cheer number:\n");
+
 			break;
 		case 7:
 			printf("Thank you for your journey through Numeria!\n");
