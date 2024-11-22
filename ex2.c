@@ -9,7 +9,7 @@ Assignment: ex2
 int main() {
 	int key;
 	char eye, nose, mouth;
-	int size, balance, generous, circle;
+	int size, balance, generous, circle, happy;
 	printf("Choose an option: \n"
 		"        1. Happy Face\n"
 		"        2. Balanced Number\n"
@@ -101,18 +101,25 @@ int main() {
 				printf("Only positive number is allowed, please try again:\n");
 				scanf("%i", &circle);
 			}
-			int circle2 = 0, m = 2;
+			int circle2 = 0, m = 2, buffer = circle;
 			while (circle % m != 0 && circle != m) {
 				if (circle % m == 0) {
 					break;
 				}
+				// while (buffer != 0) {
+				// 	circle2 += buffer % 10;
+				// 	if (buffer / 10 == 0)
+				// 		break;
+				// 	circle2 *= 10;
+				// 	buffer /= 10;
+				// }
 				m++;
 			}
-			while (circle != 0) {
-				circle2 += circle % 10;
-				if (circle / 10 == 0)
+			while (buffer != 0) {
+				circle2 += buffer % 10;
+				if (buffer / 10 == 0)
 					break;
-				circle /= 10;
+				buffer /= 10;
 				circle2 *= 10;
 			}
 			int m2 = 2;
@@ -128,7 +135,39 @@ int main() {
 				printf("The circle remains incomplete.\n");
 			break;
 		case 5:
-			printf("Happy Numbers\n");
+			printf("Enter a number:\n");
+			scanf("%i", &happy);
+			int total = 0, buffer2 = happy, num = 1;
+			while(happy <= 0) {
+				printf("Only positive number is allowed, please try again:\n");
+				scanf("%i", &happy);
+			}
+			printf("Between 1 and %d only these numbers bring happiness: ", happy);
+			do {
+				buffer2 = num;
+				while (buffer2 != 1 || total != 1) {
+					while (buffer2 != 0) {
+						total += (buffer2 % 10) * (buffer2 % 10);
+						buffer2 /= 10;
+						if (buffer2 == num)
+							break;
+					}
+					if (total != 1) {
+						buffer2 = 0;
+						while (total != 0) {
+							buffer2 += (total % 10) * (total % 10);
+							total /= 10;
+							if (total == num)
+								break;
+						}
+					}
+					else {
+						printf("%d ", num);
+						break;
+					}
+				}
+				num++;
+			} while (num != happy);
 			break;
 		case 6:
 			printf("Festival Of Laughter\n");
