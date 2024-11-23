@@ -146,7 +146,7 @@ int main() {
 			for (int i = 1; i <= happy; i++) {
 				num = i;
 				int cycle = 0;
-				while (num != 1 && cycle < 200) {
+				while (num != 1) {
 					total = 0;
 					buffer2 = num;
 					while (buffer2 > 0) {
@@ -154,7 +154,8 @@ int main() {
 						buffer2 /= 10;
 					}
 					num = total;
-					cycle++;
+					if (num == 4)
+						break;
 				}
 				if (num == 1)
 					printf("%d ",i);
