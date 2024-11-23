@@ -145,7 +145,6 @@ int main() {
 			printf("Between 1 and %d only these numbers bring happiness: ", happy);
 			for (int i = 1; i <= happy; i++) {
 				num = i;
-				int cycle = 0;
 				while (num != 1) {
 					total = 0;
 					buffer2 = num;
