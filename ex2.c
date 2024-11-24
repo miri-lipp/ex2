@@ -162,7 +162,11 @@ int main() {
 			break;
 		case 6:
 			printf("\nEnter a smile and cheer number:\n");
-
+			//scanf(" smile:%i, cheer:%i", &smile, &cheer);
+			while (scanf(" smile:%*[ ]%i, cheer:%*[ ]%i", &smile, &cheer) != 1) {
+				printf("Only 2 different positive numbers in the given format are allowed for the festival, please try again:");
+				scanf(" smile:%*[ ]%i, cheer:%*[ ]%i", &smile, &cheer);
+			}
 			break;
 		case 7:
 			printf("Thank you for your journey through Numeria!\n");
