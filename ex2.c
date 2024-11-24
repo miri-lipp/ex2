@@ -10,18 +10,21 @@ int main() {
 	int key;
 	char eye, nose, mouth;
 	int size, balance, generous, circle, happy, smile, cheer, festival_num;
-	printf("Choose an option: \n"
-		"        1. Happy Face\n"
-		"        2. Balanced Number\n"
-		"        3. Generous Number\n"
-		"        4. Circle Of Joy\n"
-		"        5. Happy Numbers\n"
-		"        6. Festival Of Laughter\n"
-		"        7. Exit\n");
-	scanf("%d", &key);
-	switch (key) {
-		case 1:
-			printf("Enter symbols for the eyes, nose, and mouth:\n");
+	int buffer = 0;
+	do{
+		printf("Choose an option: \n"
+			"        1. Happy Face\n"
+			"        2. Balanced Number\n"
+			"        3. Generous Number\n"
+			"        4. Circle Of Joy\n"
+			"        5. Happy Numbers\n"
+			"        6. Festival Of Laughter\n"
+			"        7. Exit\n");
+		scanf("%d", &key);
+
+		switch (key) {
+			case 1:
+				printf("Enter symbols for the eyes, nose, and mouth:\n");
 			scanf(" %c %c %c", &eye, &nose, &mouth);
 			printf("Enter face size:\n");
 			scanf("%d", &size);
@@ -45,17 +48,17 @@ int main() {
 			printf("/\n");
 			break;
 
-		case 2:
-			printf("Enter a number:\n");
+			case 2:
+				printf("Enter a number:\n");
 			scanf("%d", &balance);
 			while(balance <= 0) {
 				printf("Only positive number is allowed, please try again:\n");
 				scanf("%d", &balance);
 			}
 			int module = 10, sum1 = 0, sum2 = 0, j = 0;
-			int reserve = balance;
-			while (reserve != 0) {
-				reserve /= 10;
+			buffer = balance;
+			while (buffer != 0) {
+				buffer /= 10;
 				j++;
 			}
 			int k = j;
@@ -76,37 +79,38 @@ int main() {
 			else
 				printf("This number isn't balanced and destroys harmony.\n");
 			break;
-		case 3:
-			printf("Enter a number:\n");
+			case 3:
+				printf("Enter a number:\n");
 			scanf("%d", &generous);
 			while(generous <= 0) {
 				printf("Only positive number is allowed, please try again:\n");
 				scanf("%d", &generous);
 			}
-			int sum3 = 0, n = 2;
-			while (n != generous) {
-				if (generous % n == 0)
-					sum3 += n;
-				n++;
+			int sum3 = 0;
+			for (int i = 2; i != generous; i++) {
+				if (generous % i == 0)
+					sum3 += i;
 			}
 			if (sum3 > generous)
 				printf("This number is generous!\n");
 			else
 				printf("This number does not share.\n");
-			 break;
-		case 4:
-			printf("Enter a number:\n");
+			break;
+			case 4:
+				printf("Enter a number:\n");
 			scanf("%d", &circle);
+			int check1 = 2, check2 = 2;
 			while(circle <= 0) {
 				printf("Only positive number is allowed, please try again:\n");
 				scanf("%d", &circle);
 			}
-			int circle2 = 0, m = 2, buffer = circle;
-			while (circle % m != 0 && circle != m) {
-				if (circle % m == 0) {
+			int circle2 = 0;
+			buffer = circle;
+			for (int i = 2; circle % i != 0 && circle != i; i++) {
+				if (circle % i == 0) {
 					break;
 				}
-				m++;
+				check1++;
 			}
 			while (buffer != 0) {
 				circle2 += buffer % 10;
@@ -115,35 +119,34 @@ int main() {
 				buffer /= 10;
 				circle2 *= 10;
 			}
-			int m2 = 2;
-			while (circle2 % m2 != 0 && circle2 != m2) {
-				if (circle2 % m2 == 0) {
+			for (int i = 2; circle2 % i != 0 && circle2 != i; i++) {
+				if (circle2 % i == 0) {
 					break;
 				}
-				m2++;
+				check2++;
 			}
-			if (circle2 == m2 && circle == m)
+			if (circle2 == check2 && circle == check1)
 				printf("This number completes the circle of joy!\n");
 			else
 				printf("The circle remains incomplete.\n");
 			break;
-		case 5:
-			printf("Enter a number:\n");
-			scanf("%i", &happy);
-			int total, num = 2, buffer2;
+			case 5:
+				printf("Enter a number:\n");
+			scanf("%d", &happy);
+			int total, num = 0;
 			while(happy <= 0) {
 				printf("Only positive number is allowed, please try again:\n");
 				scanf("%i", &happy);
 			}
-			printf("Between 1 and %d only these numbers bring happiness: ", happy);
+			printf("Between 1 and %d only these numbers bring happiness: \n", happy);
 			for (int i = 1; i <= happy; i++) {
 				num = i;
 				while (num != 1) {
 					total = 0;
-					buffer2 = num;
-					while (buffer2 > 0) {
-						total += (buffer2 % 10) * (buffer2 % 10);
-						buffer2 /= 10;
+					buffer = num;
+					while (buffer > 0) {
+						total += (buffer % 10) * (buffer % 10);
+						buffer /= 10;
 					}
 					num = total;
 					if (num == 4)
@@ -153,8 +156,8 @@ int main() {
 					printf("%d ",i);
 			}
 			break;
-		case 6:
-			printf("Enter a smile and cheer number:\n");
+			case 6:
+				printf("Enter a smile and cheer number:\n");
 			while (scanf(" smile: %d, cheer: %d", &smile, &cheer) != 2 || smile < 0 || cheer < 0 || smile == cheer) {
 				scanf("%*[^\n]");
 				scanf("%*c");
@@ -177,14 +180,15 @@ int main() {
 					printf("%d\n", i);
 			}
 			break;
-		case 7:
-			printf("Thank you for your journey through Numeria!\n");
+			case 7:
+				printf("Thank you for your journey through Numeria!\n");
 			break;
-		default:
-			printf("This option is not available, please try again.\n");
-		break;
+			default:
+				printf("This option is not available, please try again.\n");
+			break;
 
-	}
+		}
+	} while (key != 7);
 	// Case 1: Draw Happy Face with given symbols for eyes, nose and mouse
 	/* Example:
 	* n = 3:
