@@ -138,7 +138,7 @@ int main() {
 				printf("Only positive number is allowed, please try again:\n");
 				scanf("%i", &happy);
 			}
-			printf("Between 1 and %d only these numbers bring happiness: \n", happy);
+			printf("Between 1 and %d only these numbers bring happiness: ", happy);
 			for (int i = 1; i <= happy; i++) {
 				num = i;
 				while (num != 1) {
@@ -155,6 +155,7 @@ int main() {
 				if (num == 1)
 					printf("%d ",i);
 			}
+			printf("\n");
 			break;
 			case 6:
 				printf("Enter a smile and cheer number:\n");
