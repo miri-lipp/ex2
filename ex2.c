@@ -9,7 +9,7 @@ Assignment: ex2
 int main() {
 	int key;
 	char eye, nose, mouth;
-	int size, balance, generous, circle, happy, smile, cheer;
+	int size, balance, generous, circle, happy, smile, cheer, festival_num;
 	printf("Choose an option: \n"
 		"        1. Happy Face\n"
 		"        2. Balanced Number\n"
@@ -24,10 +24,10 @@ int main() {
 			printf("Enter symbols for the eyes, nose, and mouth:\n");
 			scanf(" %c %c %c", &eye, &nose, &mouth);
 			printf("Enter face size:\n");
-			scanf("%i", &size);
+			scanf("%d", &size);
 			while (size <= 0 || size % 2 == 0) {
 				printf("The face's size must be an odd and positive number, please try again:\n");
-				scanf("%i", &size);
+				scanf("%d", &size);
 			}
 			printf("%c", eye);
 			for (int i = size; i != 0; i--) {
@@ -47,10 +47,10 @@ int main() {
 
 		case 2:
 			printf("Enter a number:\n");
-			scanf("%i", &balance);
+			scanf("%d", &balance);
 			while(balance <= 0) {
 				printf("Only positive number is allowed, please try again:\n");
-				scanf("%i", &balance);
+				scanf("%d", &balance);
 			}
 			int module = 10, sum1 = 0, sum2 = 0, j = 0;
 			int reserve = balance;
@@ -78,10 +78,10 @@ int main() {
 			break;
 		case 3:
 			printf("Enter a number:\n");
-			scanf("%i", &generous);
+			scanf("%d", &generous);
 			while(generous <= 0) {
 				printf("Only positive number is allowed, please try again:\n");
-				scanf("%i", &generous);
+				scanf("%d", &generous);
 			}
 			int sum3 = 0, n = 2;
 			while (n != generous) {
@@ -96,23 +96,16 @@ int main() {
 			 break;
 		case 4:
 			printf("Enter a number:\n");
-			scanf("%i", &circle);
+			scanf("%d", &circle);
 			while(circle <= 0) {
 				printf("Only positive number is allowed, please try again:\n");
-				scanf("%i", &circle);
+				scanf("%d", &circle);
 			}
 			int circle2 = 0, m = 2, buffer = circle;
 			while (circle % m != 0 && circle != m) {
 				if (circle % m == 0) {
 					break;
 				}
-				// while (buffer != 0) {
-				// 	circle2 += buffer % 10;
-				// 	if (buffer / 10 == 0)
-				// 		break;
-				// 	circle2 *= 10;
-				// 	buffer /= 10;
-				// }
 				m++;
 			}
 			while (buffer != 0) {
@@ -161,11 +154,27 @@ int main() {
 			}
 			break;
 		case 6:
-			printf("\nEnter a smile and cheer number:\n");
-			//scanf(" smile:%i, cheer:%i", &smile, &cheer);
-			while (scanf(" smile:%*[ ]%i, cheer:%*[ ]%i", &smile, &cheer) != 1) {
-				printf("Only 2 different positive numbers in the given format are allowed for the festival, please try again:");
-				scanf(" smile:%*[ ]%i, cheer:%*[ ]%i", &smile, &cheer);
+			printf("Enter a smile and cheer number:\n");
+			while (scanf(" smile: %d, cheer: %d", &smile, &cheer) != 2 || smile < 0 || cheer < 0 || smile == cheer) {
+				scanf("%*[^\n]");
+				scanf("%*c");
+				printf("Only 2 different positive numbers in the given format are allowed for the festival, please try again:\n");
+			}
+			printf("Enter maximum number for the festival:\n");
+			scanf("%d", &festival_num);
+			while (festival_num <= 0) {
+				printf("Only positive maximum number is allowed, please try again:\n");
+				scanf("%d", &festival_num);
+			}
+			for (int i = 1; i <= festival_num; i++) {
+				if (i % cheer == 0 && i % smile == 0)
+					printf("Festival! \n");
+				else if (i % cheer == 0 && i % smile != 0)
+					printf("Cheer!\n");
+				else if (i % smile == 0 && i % cheer != 0)
+					printf("Smile!\n");
+				else
+					printf("%d\n", i);
 			}
 			break;
 		case 7:
