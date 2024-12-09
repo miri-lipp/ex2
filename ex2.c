@@ -68,6 +68,8 @@ int main() {
 					balance_num /= module;
 					k--;
 				}
+				if (j % 2 == 1)
+					balance_num /= module;
 				j = j/2;
 				while (j != 0) {
 					sumToRight += balance_num % module;
